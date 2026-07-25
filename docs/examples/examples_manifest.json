@@ -1,0 +1,1162 @@
+{
+  "schema_version": 1,
+  "generated": false,
+  "entries": [
+    {
+      "id": "ecosystem.getting-started-counter",
+      "owner": "jsgui3-ecosystem",
+      "repo_path": ".",
+      "title": "Getting Started Counter Tutorial",
+      "category": "integration",
+      "complexity": "intro",
+      "purpose": "Step-by-step server/client counter app tutorial that introduces isomorphic controls, activation, static CSS extraction, and a public-safe admin-disabled server configuration.",
+      "entrypoints": [
+        "docs/GETTING_STARTED_TUTORIAL.md"
+      ],
+      "run": "Follow the tutorial, then run node server.js in the generated app directory.",
+      "expected": "A counter page is served, buttons update the count after activation, and the admin module remains disabled.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-client",
+        "jsgui3-html",
+        "jsgui3-server"
+      ],
+      "related_tests": [],
+      "smoke": {
+        "type": "docs"
+      }
+    },
+    {
+      "id": "html.binding-simple-counter",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Standalone Binding Counter",
+      "category": "core API",
+      "complexity": "intro",
+      "purpose": "Minimal standalone MVVM binding example without a browser server.",
+      "entrypoints": [
+        "examples/binding_simple_counter.js"
+      ],
+      "run": "node examples/binding_simple_counter.js",
+      "expected": "Prints or renders the counter binding flow without launching a browser.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-html",
+        "lang-tools"
+      ],
+      "related_tests": [
+        "test/e2e/counter.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/binding_simple_counter.js"
+        ],
+        "command": "node examples/binding_simple_counter.js"
+      }
+    },
+    {
+      "id": "html.binding-user-form",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Standalone User Form Binding",
+      "category": "core API",
+      "complexity": "intermediate",
+      "purpose": "Registration form binding, validation, transformation, touch tracking, and submit state.",
+      "entrypoints": [
+        "examples/binding_user_form.js"
+      ],
+      "run": "node examples/binding_user_form.js",
+      "expected": "Demonstrates model/view-model validation and transformed field values.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-html",
+        "lang-tools"
+      ],
+      "related_tests": [
+        "test/e2e/form_editor_features.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/binding_user_form.js"
+        ],
+        "command": "node examples/binding_user_form.js"
+      }
+    },
+    {
+      "id": "html.binding-data-grid",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Standalone Data Grid Binding",
+      "category": "controls",
+      "complexity": "intermediate",
+      "purpose": "Collection binding, sorting, filtering, pagination, and row selection.",
+      "entrypoints": [
+        "examples/binding_data_grid.js"
+      ],
+      "run": "node examples/binding_data_grid.js",
+      "expected": "Demonstrates data-grid state updates over a local data set.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-html",
+        "lang-tools"
+      ],
+      "related_tests": [
+        "test/e2e/data-controls.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/binding_data_grid.js"
+        ],
+        "command": "node examples/binding_data_grid.js"
+      }
+    },
+    {
+      "id": "html.controls-rendering",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Controls Rendering",
+      "category": "HTML/rendering",
+      "complexity": "intro",
+      "purpose": "Basic control creation and HTML rendering without MVVM.",
+      "entrypoints": [
+        "examples/controls_rendering.js"
+      ],
+      "run": "node examples/controls_rendering.js",
+      "expected": "Renders basic controls to HTML.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "test/rendering.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/controls_rendering.js"
+        ],
+        "command": "node examples/controls_rendering.js"
+      }
+    },
+    {
+      "id": "html.dev-binding-counter",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Dev Server Binding Counter",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Server-side rendering plus client activation for a binding counter.",
+      "entrypoints": [
+        "dev-examples/binding/counter/client.js",
+        "dev-examples/binding/counter/server.js"
+      ],
+      "run": "node dev-examples/binding/counter/server.js",
+      "expected": "Starts a local server, prints a URL, and serves an activated counter.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-html",
+        "jsgui3-server"
+      ],
+      "related_tests": [
+        "test/e2e/counter.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "dev-examples/binding/counter/client.js",
+          "dev-examples/binding/counter/server.js"
+        ],
+        "command": "node dev-examples/binding/counter/server.js"
+      }
+    },
+    {
+      "id": "html.dev-progressive",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Progressive Enhancement Tiers",
+      "category": "client/browser",
+      "complexity": "intermediate",
+      "purpose": "Shows native, styled, activated, and mixed activation markers.",
+      "entrypoints": [
+        "dev-examples/progressive/client.js",
+        "dev-examples/progressive/server.js"
+      ],
+      "run": "node dev-examples/progressive/server.js",
+      "expected": "Starts a local server with progressive enhancement examples.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-html",
+        "jsgui3-server"
+      ],
+      "related_tests": [
+        "test/e2e/progressive.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "dev-examples/progressive/client.js",
+          "dev-examples/progressive/server.js"
+        ],
+        "command": "node dev-examples/progressive/server.js"
+      }
+    },
+    {
+      "id": "html.dev-showcase-app",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Control Showcase App",
+      "category": "controls",
+      "complexity": "advanced",
+      "purpose": "Polished control showcase with a live Theme Studio and token editor.",
+      "entrypoints": [
+        "dev-examples/binding/showcase_app/client.js",
+        "dev-examples/binding/showcase_app/server.js"
+      ],
+      "run": "node dev-examples/binding/showcase_app/server.js",
+      "expected": "Starts a browser showcase for controls and theme tokens.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-html",
+        "jsgui3-server"
+      ],
+      "related_tests": [
+        "test/e2e/playwright/showcase_app.e2e.playwright.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "dev-examples/binding/showcase_app/client.js",
+          "dev-examples/binding/showcase_app/server.js"
+        ],
+        "command": "node dev-examples/binding/showcase_app/server.js"
+      }
+    },
+    {
+      "id": "html.dev-rich-text-editor",
+      "owner": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "title": "Rich Text Editor Dev Example",
+      "category": "controls",
+      "complexity": "advanced",
+      "purpose": "Rich text editor control composition with dedicated styles.",
+      "entrypoints": [
+        "dev-examples/rich-text-editor/client.js",
+        "dev-examples/rich-text-editor/server.js",
+        "dev-examples/rich-text-editor/styles.css"
+      ],
+      "run": "node dev-examples/rich-text-editor/server.js",
+      "expected": "Starts a local rich text editor demo.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-html",
+        "jsgui3-server"
+      ],
+      "related_tests": [],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "dev-examples/rich-text-editor/client.js",
+          "dev-examples/rich-text-editor/server.js"
+        ],
+        "command": "node dev-examples/rich-text-editor/server.js"
+      }
+    },
+    {
+      "id": "client.window-basic",
+      "owner": "jsgui3-client",
+      "repo_path": "../jsgui3-client",
+      "title": "Client Window Basic",
+      "category": "client/browser",
+      "complexity": "intro",
+      "purpose": "Browser runtime example for a basic window control.",
+      "entrypoints": [
+        "examples/controls/window-basic/client.js"
+      ],
+      "run": "Use as the client entry for a jsgui3-server window example.",
+      "expected": "A basic window control can be activated in the browser.",
+      "server": false,
+      "browser": true,
+      "packages": [
+        "jsgui3-client",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "test/client-activation.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/controls/window-basic/client.js"
+        ]
+      }
+    },
+    {
+      "id": "client.window-binding-counter",
+      "owner": "jsgui3-client",
+      "repo_path": "../jsgui3-client",
+      "title": "Client Window Binding Counter",
+      "category": "client/browser",
+      "complexity": "intermediate",
+      "purpose": "Client-side binding counter within a window control.",
+      "entrypoints": [
+        "examples/controls/window-binding-counter/client.js"
+      ],
+      "run": "Use as the client entry for a jsgui3-server window binding example.",
+      "expected": "A window-hosted counter activates and updates in the browser.",
+      "server": false,
+      "browser": true,
+      "packages": [
+        "jsgui3-client",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "test/client-activation.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/controls/window-binding-counter/client.js"
+        ]
+      }
+    },
+    {
+      "id": "client.window-binding-sse",
+      "owner": "jsgui3-client",
+      "repo_path": "../jsgui3-client",
+      "title": "Client Window Binding SSE",
+      "category": "client/browser",
+      "complexity": "advanced",
+      "purpose": "Client-side window binding with server-sent event data.",
+      "entrypoints": [
+        "examples/controls/window-binding-sse/client.js"
+      ],
+      "run": "Use as the client entry for an SSE-backed server example.",
+      "expected": "A browser control receives and displays remote observable updates.",
+      "server": false,
+      "browser": true,
+      "packages": [
+        "jsgui3-client",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "test/sse-resource.test.js",
+        "test/remote-observable.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/controls/window-binding-sse/client.js"
+        ]
+      }
+    },
+    {
+      "id": "server.html-rendering",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "HTML Rendering",
+      "category": "HTML/rendering",
+      "complexity": "intro",
+      "purpose": "Server-side HTML rendering entrypoint.",
+      "entrypoints": [
+        "examples/html-rendering.js"
+      ],
+      "run": "node examples/html-rendering.js",
+      "expected": "Renders HTML from jsgui controls without a browser workflow.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "tests/content-analysis.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/html-rendering.js"
+        ],
+        "command": "node examples/html-rendering.js"
+      }
+    },
+    {
+      "id": "server.html-server",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "HTML Server",
+      "category": "server",
+      "complexity": "intro",
+      "purpose": "Basic jsgui3-server HTML serving example.",
+      "entrypoints": [
+        "examples/html-server.js"
+      ],
+      "run": "node examples/html-server.js",
+      "expected": "Starts a local HTML server.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server"
+      ],
+      "related_tests": [
+        "tests/serve.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/html-server.js"
+        ],
+        "command": "node examples/html-server.js"
+      }
+    },
+    {
+      "id": "server.jsgui3-html-mvvm-counter",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server MVVM Counter",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Implemented example 01 from the server repo jsgui3-html example plan.",
+      "entrypoints": [
+        "examples/jsgui3-html/01) mvvm-counter/client.js",
+        "examples/jsgui3-html/01) mvvm-counter/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/01) mvvm-counter/server.js\"",
+      "expected": "Starts a server and serves an MVVM counter page.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/counter_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/01) mvvm-counter/client.js",
+          "examples/jsgui3-html/01) mvvm-counter/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/01) mvvm-counter/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-date-transform",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Date Transform",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Date parsing, range validation, transformation, and locale formatting in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/02) date-transform/client.js",
+        "examples/jsgui3-html/02) date-transform/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/02) date-transform/server.js\"",
+      "expected": "Starts a server and serves a date transform form with validation and formatted output.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/date_transform_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/02) date-transform/client.js",
+          "examples/jsgui3-html/02) date-transform/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/02) date-transform/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-form-validation",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Form Validation",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Multi-field validation example from the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/03) form-validation/client.js",
+        "examples/jsgui3-html/03) form-validation/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/03) form-validation/server.js\"",
+      "expected": "Starts a server and serves a validating registration form.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/form_validation_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/03) form-validation/client.js",
+          "examples/jsgui3-html/03) form-validation/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/03) form-validation/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-data-grid",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Data Grid",
+      "category": "controls",
+      "complexity": "intermediate",
+      "purpose": "Collection binding, sorting, filtering, pagination, and row selection in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/04) data-grid/client.js",
+        "examples/jsgui3-html/04) data-grid/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/04) data-grid/server.js\"",
+      "expected": "Starts a server and serves a data-grid page with filter, sort, pagination, and selection behavior.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/data_grid_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/04) data-grid/client.js",
+          "examples/jsgui3-html/04) data-grid/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/04) data-grid/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-master-detail",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Master Detail",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Selection syncing, computed detail rendering, and navigation in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/05) master-detail/client.js",
+        "examples/jsgui3-html/05) master-detail/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/05) master-detail/server.js\"",
+      "expected": "Starts a server and serves a master-detail interface with synchronized selection state.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/master_detail_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/05) master-detail/client.js",
+          "examples/jsgui3-html/05) master-detail/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/05) master-detail/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-theming",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Theming",
+      "category": "controls",
+      "complexity": "intermediate",
+      "purpose": "Theme tokens, theme overrides, and CSS variable application in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/06) theming/client.js",
+        "examples/jsgui3-html/06) theming/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/06) theming/server.js\"",
+      "expected": "Starts a server and serves a themed controls page with token-driven style updates.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/theming_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/06) theming/client.js",
+          "examples/jsgui3-html/06) theming/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/06) theming/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-mixins",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Mixins Example",
+      "category": "controls",
+      "complexity": "advanced",
+      "purpose": "Dragable, resizable, and selectable mixin behavior hosted through jsgui3-server.",
+      "entrypoints": [
+        "examples/jsgui3-html/07) mixins/client.js",
+        "examples/jsgui3-html/07) mixins/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/07) mixins/server.js\"",
+      "expected": "Starts a server and serves cards with mixin-driven interactions.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/mixins_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/07) mixins/client.js",
+          "examples/jsgui3-html/07) mixins/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/07) mixins/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-router",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Router",
+      "category": "client/browser",
+      "complexity": "intermediate",
+      "purpose": "Router contract and route switching in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/08) router/client.js",
+        "examples/jsgui3-html/08) router/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/08) router/server.js\"",
+      "expected": "Starts a server and serves a routed page with client-side route switching.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/router_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/08) router/client.js",
+          "examples/jsgui3-html/08) router/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/08) router/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-resource-transform",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Resource Transform",
+      "category": "server",
+      "complexity": "advanced",
+      "purpose": "Resource plus Data_Transform pipeline in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/09) resource-transform/client.js",
+        "examples/jsgui3-html/09) resource-transform/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/09) resource-transform/server.js\"",
+      "expected": "Starts a server and serves a resource transform workflow with observable output.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/resource_transform_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/09) resource-transform/client.js",
+          "examples/jsgui3-html/09) resource-transform/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/09) resource-transform/server.js\""
+      }
+    },
+    {
+      "id": "server.jsgui3-html-binding-debugger",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Server Binding Debugger",
+      "category": "integration",
+      "complexity": "advanced",
+      "purpose": "BindingDebugger usage for inspecting bindings, state changes, and diagnostics in the server-hosted jsgui3-html suite.",
+      "entrypoints": [
+        "examples/jsgui3-html/10) binding-debugger/client.js",
+        "examples/jsgui3-html/10) binding-debugger/server.js"
+      ],
+      "run": "node \"examples/jsgui3-html/10) binding-debugger/server.js\"",
+      "expected": "Starts a server and serves binding diagnostics alongside an interactive example.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html",
+        "jsgui3-client"
+      ],
+      "related_tests": [
+        "tests/jsgui3-html-examples.puppeteer.test.js",
+        "tests/fixtures/jsgui3-html/binding_debugger_expectations.json"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/jsgui3-html/10) binding-debugger/client.js",
+          "examples/jsgui3-html/10) binding-debugger/server.js"
+        ],
+        "command": "node \"examples/jsgui3-html/10) binding-debugger/server.js\""
+      }
+    },
+    {
+      "id": "server.observable-sse",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Observable SSE Window",
+      "category": "server",
+      "complexity": "advanced",
+      "purpose": "Server-sent events and observable publishing with a window control.",
+      "entrypoints": [
+        "examples/controls/15) window, observable SSE/client.js",
+        "examples/controls/15) window, observable SSE/server.js",
+        "examples/controls/15) window, observable SSE/check.js"
+      ],
+      "run": "node \"examples/controls/15) window, observable SSE/server.js\"",
+      "expected": "Starts a server and streams observable data to the browser.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-client",
+        "fnl"
+      ],
+      "related_tests": [
+        "tests/observable-sse.test.js",
+        "tests/server-publish-observable.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/controls/15) window, observable SSE/client.js",
+          "examples/controls/15) window, observable SSE/server.js",
+          "examples/controls/15) window, observable SSE/check.js"
+        ],
+        "command": "node \"examples/controls/15) window, observable SSE/server.js\""
+      }
+    },
+    {
+      "id": "server.json-simple-api",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "JSON Simple API",
+      "category": "server",
+      "complexity": "intro",
+      "purpose": "Small JSON API server example with diagnostic material.",
+      "entrypoints": [
+        "examples/json/simple-api/server.js",
+        "examples/json/simple-api/test.js"
+      ],
+      "run": "node examples/json/simple-api/server.js",
+      "expected": "Starts a JSON API server and exposes documented endpoints.",
+      "server": true,
+      "browser": false,
+      "packages": [
+        "jsgui3-server"
+      ],
+      "related_tests": [
+        "tests/query-publisher.test.js",
+        "tests/openapi.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/json/simple-api/server.js",
+          "examples/json/simple-api/test.js"
+        ],
+        "command": "node examples/json/simple-api/server.js"
+      }
+    },
+    {
+      "id": "server.query-endpoint",
+      "owner": "jsgui3-server",
+      "repo_path": "../jsgui3-server",
+      "title": "Query Endpoint Data View",
+      "category": "server",
+      "complexity": "intermediate",
+      "purpose": "Data-view example for query endpoint publishing.",
+      "entrypoints": [
+        "examples/data-views/01) query-endpoint/server.js"
+      ],
+      "run": "node \"examples/data-views/01) query-endpoint/server.js\"",
+      "expected": "Starts a query endpoint example server.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server"
+      ],
+      "related_tests": [
+        "tests/query-publisher.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/data-views/01) query-endpoint/server.js"
+        ],
+        "command": "node \"examples/data-views/01) query-endpoint/server.js\""
+      }
+    },
+    {
+      "id": "gfx.1bipp",
+      "owner": "jsgui3-gfx-core",
+      "repo_path": "../jsgui3-gfx-core",
+      "title": "1bipp Pixel Buffer",
+      "category": "core API",
+      "complexity": "intro",
+      "purpose": "Monochrome pixel buffer operations.",
+      "entrypoints": [
+        "examples/1bipp.js"
+      ],
+      "run": "node examples/1bipp.js",
+      "expected": "Creates or manipulates 1-bit-per-pixel buffers.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-gfx-core"
+      ],
+      "related_tests": [
+        "tests/run-tests.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/1bipp.js"
+        ],
+        "command": "node examples/1bipp.js"
+      }
+    },
+    {
+      "id": "gfx.24bipp",
+      "owner": "jsgui3-gfx-core",
+      "repo_path": "../jsgui3-gfx-core",
+      "title": "24bipp Pixel Buffer",
+      "category": "core API",
+      "complexity": "intro",
+      "purpose": "RGB pixel buffer operations and output examples.",
+      "entrypoints": [
+        "examples/24bipp.js"
+      ],
+      "run": "node examples/24bipp.js",
+      "expected": "Creates or manipulates 24-bit RGB buffers.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-gfx-core"
+      ],
+      "related_tests": [
+        "tests/run-tests.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/24bipp.js"
+        ],
+        "command": "node examples/24bipp.js"
+      }
+    },
+    {
+      "id": "gfx.fractals",
+      "owner": "jsgui3-gfx-core",
+      "repo_path": "../jsgui3-gfx-core",
+      "title": "Fractal Pixel Buffer Output",
+      "category": "experimental",
+      "complexity": "advanced",
+      "purpose": "Generates image output from pixel buffer operations.",
+      "entrypoints": [
+        "examples/fractals.js"
+      ],
+      "run": "node examples/fractals.js",
+      "expected": "Writes generated image output under the examples output area.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-gfx-core",
+        "sharp"
+      ],
+      "related_tests": [
+        "docs/EXAMPLES.md"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "examples/fractals.js"
+        ],
+        "command": "node examples/fractals.js"
+      }
+    },
+    {
+      "id": "modern.serve-site-multipage",
+      "owner": "jsgui3-modern-examples",
+      "repo_path": "../jsgui3-modern-examples",
+      "title": "Modern Serve Site Multipage",
+      "category": "integration",
+      "complexity": "advanced",
+      "purpose": "Modern serve_site, Website, Webpage, aliases, redirects, and API endpoint example.",
+      "entrypoints": [
+        "serve-site-multipage/controls.js",
+        "serve-site-multipage/server.js"
+      ],
+      "run": "node serve-site-multipage/server.js",
+      "expected": "Prints an auto-port URL and serves home, about, alias, redirect, and /api/status.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-webpage",
+        "jsgui3-website"
+      ],
+      "related_tests": [
+        "tests/smoke.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "serve-site-multipage/controls.js",
+          "serve-site-multipage/server.js"
+        ],
+        "command": "node serve-site-multipage/server.js",
+        "notes": "The modern examples startup suite is declared on modern.plain-control-document because the current local suite failure occurs after serve-site-multipage endpoint checks pass."
+      }
+    },
+    {
+      "id": "modern.plain-control-document",
+      "owner": "jsgui3-modern-examples",
+      "repo_path": "../jsgui3-modern-examples",
+      "title": "Plain Control Document Split",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Documents the safe document/widget split: Active_HTML_Document wrapper with a plain Control widget.",
+      "entrypoints": [
+        "plain-control-document/controls.js",
+        "plain-control-document/server.js"
+      ],
+      "run": "node plain-control-document/server.js",
+      "expected": "Prints an auto-port URL and serves a plain-control widget in a document wrapper.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-server",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "tests/smoke.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "plain-control-document/controls.js",
+          "plain-control-document/server.js"
+        ],
+        "command": "node plain-control-document/server.js",
+        "startup_command": "node tests/smoke.test.js",
+        "startup_timeout_ms": 360000,
+        "notes": "tests/smoke.test.js covers both modern examples and took about 4 minutes locally because plain-control-document performs a long first-run bundle. Keep this bounded but above the default 150s coordinator timeout."
+      }
+    },
+    {
+      "id": "simple.showcase",
+      "owner": "jsgui3-simple-example",
+      "repo_path": "../jsgui3-simple-example",
+      "title": "Simple Showcase App",
+      "category": "integration",
+      "complexity": "intermediate",
+      "purpose": "Small standalone showcase for Accordion, Alert_Banner, Color_Picker, Button, CSS custom property themes, and server/client split.",
+      "entrypoints": [
+        "client.js",
+        "server.js",
+        "README.md",
+        "docs/getting-started-with-jsgui3.md"
+      ],
+      "run": "npm start",
+      "expected": "Serves a control showcase at http://localhost:52000/.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-client",
+        "jsgui3-html",
+        "jsgui3-server",
+        "lang-tools"
+      ],
+      "related_tests": [],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "client.js",
+          "server.js"
+        ],
+        "command": "npm start",
+        "notes": "package.json also declares npm run smoke, but tests/smoke.test.js was not present in the bounded scan."
+      }
+    },
+    {
+      "id": "webpage.composition-tests",
+      "owner": "jsgui3-webpage",
+      "repo_path": "../jsgui3-webpage",
+      "title": "Webpage Composition Tests",
+      "category": "core API",
+      "complexity": "intro",
+      "purpose": "Test-backed reference for Webpage model composition; no example directory was found.",
+      "entrypoints": [
+        "test/webpage.test.js",
+        "test/webpage_composition.test.js"
+      ],
+      "run": "npm test",
+      "expected": "Mocha validates Webpage creation and composition.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-webpage",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "test/webpage.test.js",
+        "test/webpage_composition.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "test/webpage.test.js",
+          "test/webpage_composition.test.js"
+        ],
+        "command": "npm test"
+      }
+    },
+    {
+      "id": "website.resolved-model-tests",
+      "owner": "jsgui3-website",
+      "repo_path": "../jsgui3-website",
+      "title": "Website Resolved Model Tests",
+      "category": "core API",
+      "complexity": "intro",
+      "purpose": "Test-backed reference for Website model behavior; no example directory was found.",
+      "entrypoints": [
+        "test/website.test.js",
+        "test/resolved_model.test.js"
+      ],
+      "run": "npm test",
+      "expected": "Mocha validates Website and resolved model behavior.",
+      "server": false,
+      "browser": false,
+      "packages": [
+        "jsgui3-website",
+        "jsgui3-webpage",
+        "jsgui3-html"
+      ],
+      "related_tests": [
+        "test/website.test.js",
+        "test/resolved_model.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "test/website.test.js",
+          "test/resolved_model.test.js"
+        ],
+        "command": "npm test"
+      }
+    },
+    {
+      "id": "ownsite.docs-viewer",
+      "owner": "jsgui3-own-website",
+      "repo_path": "../jsgui3-own-website",
+      "title": "Extensive Docs Viewer Website",
+      "category": "integration",
+      "complexity": "advanced",
+      "purpose": "Server-rendered, client-activated documentation viewer that shows live jsgui3 controls beside their real jsgui3-html source, example source, prose docs, run commands, and honest status.",
+      "entrypoints": [
+        "server.js",
+        "client.js",
+        "controls/Docs_Viewer_Shell.js",
+        "controls/Control_Catalog.js"
+      ],
+      "run": "npm start",
+      "expected": "Serves an overview-first, full-screen documentation studio with embedded live controls, source-backed conceptual docs, a faceted 157-control catalog, documented control workbenches, checked examples, and bounded /api/docs/* metadata/source routes.",
+      "server": true,
+      "browser": true,
+      "packages": [
+        "jsgui3-client",
+        "jsgui3-html",
+        "jsgui3-server",
+        "lang-tools"
+      ],
+      "related_tests": [
+        "tests/docs-viewer.test.js",
+        "tests/docs-viewer.browser.test.js"
+      ],
+      "smoke": {
+        "type": "syntax",
+        "syntax_files": [
+          "server.js",
+          "client.js",
+          "controls/Source_Code_Viewer.js",
+          "controls/Source_Browser.js",
+          "controls/Docs_Viewer_Shell.js",
+          "controls/Example_Preview_Frame.js",
+          "controls/Control_Catalog.js"
+        ],
+        "command": "npm test"
+      }
+    }
+  ]
+}

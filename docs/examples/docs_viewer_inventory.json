@@ -1,0 +1,445 @@
+{
+  "schema_version": 1,
+  "generated": false,
+  "status": "prototype-spec",
+  "coordination_owner": "jsgui3-ecosystem",
+  "implementation_owner": "jsgui3-own-website",
+  "implementation_owners": {
+    "extensive_viewer": "jsgui3-own-website",
+    "minimal_shell": "jsgui3-server"
+  },
+  "control_owner": "jsgui3-html",
+  "last_smoke_policy": {
+    "status_values": [
+      "pass",
+      "manual-pass",
+      "blocked",
+      "not_recorded"
+    ],
+    "generated_artifacts": "Do not commit generated smoke output. Store only small, human-maintained status fields and exact commands."
+  },
+  "viewer_controls": [
+    {
+      "repo": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "path": "controls/organised/1-standard/1-editor/Code_Editor.js",
+      "role": "source_view",
+      "purpose": "Show component and example source in a readable control."
+    },
+    {
+      "repo": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "path": "controls/organised/1-standard/0-viewer/Markdown_Viewer.js",
+      "role": "markdown_docs_view",
+      "purpose": "Render explanatory docs beside live examples."
+    },
+    {
+      "repo": "jsgui3-html",
+      "repo_path": "../jsgui3-html",
+      "path": "test/e2e/gallery_server.js",
+      "role": "isolated_control_rendering_reference",
+      "purpose": "Reference for rendering controls in isolation and activating them with a client bundle."
+    }
+  ],
+  "entries": [
+    {
+      "id": "docs-viewer.server-mvvm-counter",
+      "manifest_id": "server.jsgui3-html-mvvm-counter",
+      "owner_repo": "jsgui3-server",
+      "viewer_path": "/docs/examples/server.jsgui3-html-mvvm-counter",
+      "run_command": "node \"examples/jsgui3-html/01) mvvm-counter/server.js\"",
+      "expected_result": "Starts a server and serves an MVVM counter page.",
+      "live_preview": {
+        "mode": "server-hosted-jsgui3-html",
+        "route": "/examples/server.jsgui3-html-mvvm-counter/",
+        "status": "planned",
+        "activation": "required"
+      },
+      "docs": [
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "examples/jsgui3-html/01) mvvm-counter/README.md",
+          "role": "example_docs"
+        }
+      ],
+      "source": {
+        "framework": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "server.js",
+            "role": "server_runtime_source"
+          }
+        ],
+        "component": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "examples/jsgui3-html/01) mvvm-counter/client.js",
+            "role": "example_control_source"
+          }
+        ],
+        "example": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "examples/jsgui3-html/01) mvvm-counter/server.js",
+            "role": "server_entrypoint_source"
+          }
+        ]
+      },
+      "related_tests": [
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "tests/jsgui3-html-examples.puppeteer.test.js"
+        },
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "tests/fixtures/jsgui3-html/counter_expectations.json"
+        }
+      ],
+      "last_smoke": {
+        "command": "npm run smoke:examples",
+        "status": "pass",
+        "recorded_at": "2026-05-28"
+      }
+    },
+    {
+      "id": "docs-viewer.server-data-grid",
+      "manifest_id": "server.jsgui3-html-data-grid",
+      "owner_repo": "jsgui3-server",
+      "viewer_path": "/docs/examples/server.jsgui3-html-data-grid",
+      "run_command": "node \"examples/jsgui3-html/04) data-grid/server.js\"",
+      "expected_result": "Starts a server and serves a data-grid page with filter, sort, pagination, and selection behavior.",
+      "live_preview": {
+        "mode": "deployed-public-demo",
+        "route": "http://141.144.193.218:52000/",
+        "status": "ready",
+        "activation": "required",
+        "note": "Publicly deployed Team Directory data grid on the Oracle host; see docs/deployments/ORACLE_DATA_GRID_DEMO.md. The local run_command route remains available for self-hosting."
+      },
+      "docs": [
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "examples/jsgui3-html/04) data-grid/README.md",
+          "role": "example_docs"
+        }
+      ],
+      "source": {
+        "framework": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "server.js",
+            "role": "server_runtime_source"
+          }
+        ],
+        "component": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "examples/jsgui3-html/04) data-grid/client.js",
+            "role": "example_control_source"
+          }
+        ],
+        "example": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "examples/jsgui3-html/04) data-grid/server.js",
+            "role": "server_entrypoint_source"
+          }
+        ]
+      },
+      "related_tests": [
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "tests/jsgui3-html-examples.puppeteer.test.js"
+        },
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "tests/fixtures/jsgui3-html/data_grid_expectations.json"
+        }
+      ],
+      "last_smoke": {
+        "command": "npm run smoke:examples",
+        "status": "pass",
+        "recorded_at": "2026-05-28"
+      }
+    },
+    {
+      "id": "docs-viewer.server-binding-debugger",
+      "manifest_id": "server.jsgui3-html-binding-debugger",
+      "owner_repo": "jsgui3-server",
+      "viewer_path": "/docs/examples/server.jsgui3-html-binding-debugger",
+      "run_command": "node \"examples/jsgui3-html/10) binding-debugger/server.js\"",
+      "expected_result": "Starts a server and serves binding diagnostics alongside an interactive example.",
+      "live_preview": {
+        "mode": "server-hosted-jsgui3-html",
+        "route": "/examples/server.jsgui3-html-binding-debugger/",
+        "status": "planned",
+        "activation": "required"
+      },
+      "docs": [
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "examples/jsgui3-html/10) binding-debugger/README.md",
+          "role": "example_docs"
+        }
+      ],
+      "source": {
+        "framework": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "server.js",
+            "role": "server_runtime_source"
+          }
+        ],
+        "component": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "examples/jsgui3-html/10) binding-debugger/client.js",
+            "role": "example_control_source"
+          }
+        ],
+        "example": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "examples/jsgui3-html/10) binding-debugger/server.js",
+            "role": "server_entrypoint_source"
+          }
+        ]
+      },
+      "related_tests": [
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "tests/jsgui3-html-examples.puppeteer.test.js"
+        },
+        {
+          "repo": "jsgui3-server",
+          "repo_path": "../jsgui3-server",
+          "path": "tests/fixtures/jsgui3-html/binding_debugger_expectations.json"
+        }
+      ],
+      "last_smoke": {
+        "command": "npm run smoke:examples",
+        "status": "pass",
+        "recorded_at": "2026-05-28"
+      }
+    },
+    {
+      "id": "docs-viewer.html-showcase-app",
+      "manifest_id": "html.dev-showcase-app",
+      "owner_repo": "jsgui3-html",
+      "viewer_path": "/docs/examples/html.dev-showcase-app",
+      "run_command": "node dev-examples/binding/showcase_app/server.js",
+      "expected_result": "Starts a browser showcase for controls and theme tokens.",
+      "live_preview": {
+        "mode": "jsgui3-html-dev-server",
+        "route": "/examples/html.dev-showcase-app/",
+        "status": "planned",
+        "activation": "required"
+      },
+      "docs": [
+        {
+          "repo": "jsgui3-html",
+          "repo_path": "../jsgui3-html",
+          "path": "dev-examples/binding/showcase_app/README.md",
+          "role": "example_docs"
+        }
+      ],
+      "source": {
+        "framework": [
+          {
+            "repo": "jsgui3-html",
+            "repo_path": "../jsgui3-html",
+            "path": "html-core/html-core.js",
+            "role": "html_control_framework_source"
+          }
+        ],
+        "component": [
+          {
+            "repo": "jsgui3-html",
+            "repo_path": "../jsgui3-html",
+            "path": "dev-examples/binding/showcase_app/client.js",
+            "role": "showcase_control_source"
+          }
+        ],
+        "example": [
+          {
+            "repo": "jsgui3-html",
+            "repo_path": "../jsgui3-html",
+            "path": "dev-examples/binding/showcase_app/server.js",
+            "role": "server_entrypoint_source"
+          }
+        ]
+      },
+      "related_tests": [
+        {
+          "repo": "jsgui3-html",
+          "repo_path": "../jsgui3-html",
+          "path": "test/e2e/playwright/showcase_app.e2e.playwright.js"
+        }
+      ],
+      "last_smoke": {
+        "command": "npm run smoke:examples",
+        "status": "pass",
+        "recorded_at": "2026-05-28"
+      }
+    },
+    {
+      "id": "docs-viewer.modern-plain-control-document",
+      "manifest_id": "modern.plain-control-document",
+      "owner_repo": "jsgui3-modern-examples",
+      "viewer_path": "/docs/examples/modern.plain-control-document",
+      "run_command": "node plain-control-document/server.js",
+      "expected_result": "Prints an auto-port URL and serves a plain-control widget in a document wrapper.",
+      "live_preview": {
+        "mode": "local-standalone-server",
+        "route": "/examples/modern.plain-control-document/",
+        "status": "blocked-unowned-long-startup",
+        "activation": "required"
+      },
+      "docs": [
+        {
+          "repo": "jsgui3-modern-examples",
+          "repo_path": "../jsgui3-modern-examples",
+          "path": "plain-control-document/README.md",
+          "role": "example_docs"
+        }
+      ],
+      "source": {
+        "framework": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "controls/Active_HTML_Document.js",
+            "role": "document_wrapper_source"
+          }
+        ],
+        "component": [
+          {
+            "repo": "jsgui3-modern-examples",
+            "repo_path": "../jsgui3-modern-examples",
+            "path": "plain-control-document/controls.js",
+            "role": "document_and_widget_source"
+          }
+        ],
+        "example": [
+          {
+            "repo": "jsgui3-modern-examples",
+            "repo_path": "../jsgui3-modern-examples",
+            "path": "plain-control-document/server.js",
+            "role": "server_entrypoint_source"
+          }
+        ]
+      },
+      "related_tests": [
+        {
+          "repo": "jsgui3-modern-examples",
+          "repo_path": "../jsgui3-modern-examples",
+          "path": "tests/smoke.test.js"
+        }
+      ],
+      "last_smoke": {
+        "command": "timeout 300 node tests/smoke.test.js",
+        "status": "manual-pass",
+        "recorded_at": "2026-05-28",
+        "duration": "4:00.46"
+      }
+    },
+    {
+      "id": "docs-viewer.ownsite-docs-viewer",
+      "manifest_id": "ownsite.docs-viewer",
+      "owner_repo": "jsgui3-own-website",
+      "viewer_path": "/docs/examples/ownsite.docs-viewer",
+      "run_command": "npm start",
+      "expected_result": "Serves an overview-first, full-screen documentation studio with embedded live controls, source-backed conceptual docs, a faceted 157-control catalog, documented control workbenches, checked examples, and bounded /api/docs/* metadata/source routes.",
+      "live_preview": {
+        "mode": "self-hosted-docs-viewer",
+        "route": "http://141.144.193.218:52001/",
+        "status": "ready",
+        "activation": "required",
+        "note": "Public naming and match-aware search release verified on the Oracle host in responsive Chromium on 2026-07-25; see docs/deployments/ORACLE_DOCS_VIEWER_DEMO.md."
+      },
+      "docs": [
+        {
+          "repo": "jsgui3-own-website",
+          "repo_path": "../jsgui3-own-website",
+          "path": "AGENTS.md",
+          "role": "owner_guide_docs"
+        }
+      ],
+      "source": {
+        "framework": [
+          {
+            "repo": "jsgui3-server",
+            "repo_path": "../jsgui3-server",
+            "path": "server.js",
+            "role": "server_runtime_source"
+          }
+        ],
+        "component": [
+          {
+            "repo": "jsgui3-own-website",
+            "repo_path": "../jsgui3-own-website",
+            "path": "controls/Docs_Viewer_Shell.js",
+            "role": "app_shell_control_source"
+          },
+          {
+            "repo": "jsgui3-own-website",
+            "repo_path": "../jsgui3-own-website",
+            "path": "controls/Control_Catalog.js",
+            "role": "catalog_control_source"
+          }
+        ],
+        "example": [
+          {
+            "repo": "jsgui3-own-website",
+            "repo_path": "../jsgui3-own-website",
+            "path": "server.js",
+            "role": "server_entrypoint_source"
+          }
+        ]
+      },
+      "related_tests": [
+        {
+          "repo": "jsgui3-own-website",
+          "repo_path": "../jsgui3-own-website",
+          "path": "tests/docs-viewer.test.js"
+        },
+        {
+          "repo": "jsgui3-own-website",
+          "repo_path": "../jsgui3-own-website",
+          "path": "tests/docs-viewer.browser.test.js"
+        }
+      ],
+      "last_smoke": {
+        "command": "npm test",
+        "status": "pass",
+        "recorded_at": "2026-07-25"
+      }
+    }
+  ],
+  "deferred_manifest_ids": [
+    {
+      "manifest_id": "webpage.composition-tests",
+      "reason": "Wait for a served Webpage example before presenting this as live docs-viewer material."
+    },
+    {
+      "manifest_id": "website.resolved-model-tests",
+      "reason": "Wait for a served Website example before presenting this as live docs-viewer material."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../jsgui3-client"
+		},
+		{
+			"path": "../jsgui3-designer"
+		},
+		{
+			"path": "../jsgui3-gfx-core"
+		},
+		{
+			"path": "../jsgui3-html"
+		},
+		{
+			"path": "../jsgui3-own-website"
+		},
+		{
+			"path": "../jsgui3-server"
+		},
+		{
+			"path": "../jsgui3-webpage"
+		},
+		{
+			"path": "../jsgui3-website"
+		},
+		{
+			"path": "../lang-mini"
+		},
+		{
+			"path": "../lang-tools"
+		},
+		{
+			"path": "../oext"
+		},
+		{
+			"path": "../jsgui3-simple-example"
+		},
+		{
+			"path": "../jsgui3-agents-flowcharts"
+		},
+		{
+			"path": "../jsgui3-modern-examples"
+		}
+	],
+	"settings": {}
+}

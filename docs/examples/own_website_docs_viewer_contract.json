@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "generated": false,
+  "status": "owner-implementation-contract",
+  "decision": "extensive-docs-viewer-owned-by-jsgui3-own-website",
+  "coordination_owner": "jsgui3-ecosystem",
+  "implementation_owner": "jsgui3-own-website",
+  "implementation_owner_path": "../jsgui3-own-website",
+  "control_source_owner": "jsgui3-html",
+  "serving_owner": "jsgui3-server",
+  "inventory_source": "docs/examples/docs_viewer_inventory.json",
+  "route_prefix": "/",
+  "api_prefix": "/api/docs",
+  "supersedes": "docs/examples/docs_viewer_shell_contract.json",
+  "supersedes_note": "The jsgui3-server examples/docs-viewer shell remains a bounded minimal contract reference, but its implementation is currently parked in local stashes and absent from the owner checkout/history. The extensive, user-facing viewer is owned by jsgui3-own-website and uses real jsgui3 controls with SSR and client activation.",
+  "rendering_model": {
+    "mode": "isomorphic-ssr-with-client-activation",
+    "ssr": "Controls compose their tree in the constructor when spec.el is absent, so the server produces the page HTML.",
+    "activation": "On the client the framework reattaches each control to its existing DOM element and calls activate() to bind events. This is activation, not hydration; the client does not re-render or diff a virtual tree. activate() is guarded by if (this.__active) return.",
+    "isomorphic_entry": "A single client.js defines and registers the controls and is passed to jsgui3-server as src_path_client_js, so the same control code renders on the server and activates on the client.",
+    "source_reads_on_server": "All filesystem reads happen on the server in route/API handlers; the client bundle never reads files."
+  },
+  "new_controls": [
+    {
+      "name": "Source_Code_Viewer",
+      "path": "controls/Source_Code_Viewer.js",
+      "extends": "Control",
+      "purpose": "Read-only source-code pane with filename, language label, line numbers, and a copy-to-clipboard button activated on the client.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    },
+    {
+      "name": "Source_Browser",
+      "path": "controls/Source_Browser.js",
+      "extends": "Control",
+      "purpose": "Tree_View-based navigator that selects which source kind/file to show in the Source_Code_Viewer.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    },
+    {
+      "name": "Docs_Viewer_Shell",
+      "path": "controls/Docs_Viewer_Shell.js",
+      "extends": "Active_HTML_Document",
+      "purpose": "App-level document control that composes the page: docs pane, live preview, source panes, metadata, and failure panel, switched via Tabbed_Panel.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    },
+    {
+      "name": "Example_Preview_Frame",
+      "path": "controls/Example_Preview_Frame.js",
+      "extends": "Control",
+      "purpose": "Live preview of an example via an iframe to that example's served route, plus an activation/readiness status line.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    },
+    {
+      "name": "Control_Catalog",
+      "path": "controls/Control_Catalog.js",
+      "extends": "Control",
+      "purpose": "Browse/select jsgui3-html controls; each card links to its control page, with a client-activated name filter and an explicit data-catalog-active activation marker.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    },
+    {
+      "name": "Global_Search",
+      "path": "controls/Global_Search.js",
+      "extends": "Control",
+      "purpose": "Progressive global guide/control/example search with a native GET fallback and activated keyboard suggestions.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    },
+    {
+      "name": "Control_Explorer",
+      "path": "controls/Control_Explorer.js",
+      "extends": "Control",
+      "purpose": "Opening full-registry Data_Grid application with activated filtering, sorting, keyboard selection, and linked inline control previews inside a Panel frame.",
+      "ssr_compose": true,
+      "client_activation": true,
+      "status": "implemented"
+    }
+  ],
+  "reused_controls": [
+    { "name": "Code_Editor", "owner": "jsgui3-html", "role": "Editable/fallback source pane." },
+    { "name": "Markdown_Viewer", "owner": "jsgui3-html", "role": "Docs/prose pane rendered as a control tree." },
+    { "name": "Tabbed_Panel", "owner": "jsgui3-html", "role": "Switch between preview, source, and docs." },
+    { "name": "Tree_View", "owner": "jsgui3-html", "role": "Source browser and control catalog navigation." },
+    { "name": "Data_Grid", "owner": "jsgui3-html", "role": "Full public control-registry navigator on the opening screen." },
+    { "name": "Panel", "owner": "jsgui3-html", "role": "Application frame around the opening control explorer." },
+    { "name": "Active_HTML_Document", "owner": "jsgui3-html", "role": "Server document scaffold for the page shell." }
+  ],
+  "implementation_files": [
+    { "path": "package.json", "purpose": "Consumer package with file: deps on jsgui3-client/html/server and lang-tools.", "status": "implemented" },
+    { "path": "AGENTS.md", "purpose": "Owner-side agent guide: conventions, SSR+activation model, validation.", "status": "seeded" },
+    { "path": "IMPLEMENTATION_PLAN.md", "purpose": "Phased build plan with file list, code skeletons, and acceptance.", "status": "seeded" },
+    { "path": "controls/Source_Code_Viewer.js", "purpose": "Canonical new source-viewing control.", "status": "implemented" },
+    { "path": "controls/Source_Browser.js", "purpose": "Tree_View-based source navigator for real control-source pages.", "status": "implemented" },
+    { "path": "controls/Docs_Viewer_Shell.js", "purpose": "App-level document control.", "status": "implemented" },
+    { "path": "controls/Example_Preview_Frame.js", "purpose": "Live example preview frame.", "status": "implemented" },
+    { "path": "controls/Control_Catalog.js", "purpose": "Control catalog control.", "status": "implemented" },
+    { "path": "controls/Global_Search.js", "purpose": "Progressive global search control.", "status": "implemented" },
+    { "path": "controls/Control_Explorer.js", "purpose": "Activated full-registry control data grid and inline preview workspace.", "status": "implemented" },
+    { "path": "control_preview_registry.js", "purpose": "Shared client-safe preview availability registry.", "status": "implemented" },
+    { "path": "example_public_title.js", "purpose": "Shared isomorphic public example-title helper used by page titles, headings, cards, previews, and search.", "status": "implemented" },
+    { "path": "client.js", "purpose": "Isomorphic control registration + bundler entry.", "status": "implemented" },
+    { "path": "server.js", "purpose": "jsgui3-server entry that serves the viewer and source/API routes.", "status": "implemented" },
+    { "path": "tests/docs-viewer.test.js", "purpose": "Route, source-kind, status, and failure-panel tests.", "status": "implemented" },
+    { "path": "tests/docs-viewer.browser.test.js", "purpose": "Real-browser activation tests: activation marker, catalog filter, tab switching, navigation, deployed preview, failure panels. Skips cleanly when puppeteer is unavailable.", "status": "implemented" }
+  ],
+  "routes": [
+    { "method": "GET", "path": "/", "purpose": "Landing page with a live activated control and catalog links." },
+    { "method": "GET", "path": "/docs", "purpose": "Conceptual documentation index." },
+    { "method": "GET", "path": "/docs/:doc_slug", "purpose": "Source-backed conceptual documentation page." },
+    { "method": "GET", "path": "/search", "purpose": "Ranked server-rendered guide, control, and example search." },
+    { "method": "GET", "path": "/controls", "purpose": "Control catalog index." },
+    { "method": "GET", "path": "/controls/:control_name", "purpose": "Control page: live preview + jsgui3-html source + docs." },
+    { "method": "GET", "path": "/examples", "purpose": "Examples index from the inventory." },
+    { "method": "GET", "path": "/examples/:manifest_id", "purpose": "Example page: live preview + example/framework/component source + docs + status." },
+    { "method": "GET", "path": "/api/docs/inventory", "purpose": "Inventory JSON." },
+    { "method": "GET", "path": "/api/docs/source", "purpose": "Source text by manifest_id, kind, and index." },
+    { "method": "GET", "path": "/api/docs/control-source", "purpose": "jsgui3-html control source by control name." },
+    { "method": "GET", "path": "/api/docs/status", "purpose": "Inventory/status JSON without launching examples." },
+    { "method": "GET", "path": "/api/docs/search", "purpose": "Bounded metadata-only search suggestions." }
+  ],
+  "render_panes": [
+    "docs",
+    "live_preview",
+    "activation_status",
+    "framework_source",
+    "component_source",
+    "example_source",
+    "run_command",
+    "owner_repo",
+    "smoke_status",
+    "related_tests",
+    "failure_panel"
+  ],
+  "source_kinds": ["docs", "framework", "component", "example"],
+  "phases": [
+    {
+      "id": "phase-1-scaffold",
+      "title": "Scaffold + first runnable page",
+      "status": "implemented",
+      "files": ["package.json", "controls/Source_Code_Viewer.js", "client.js", "server.js", "tests/docs-viewer.test.js"]
+    },
+    {
+      "id": "phase-2-control-source",
+      "title": "Source viewing of jsgui3-html controls",
+      "status": "implemented",
+      "files": ["controls/Source_Browser.js"]
+    },
+    {
+      "id": "phase-3-example-preview",
+      "title": "Example viewing with live preview",
+      "status": "implemented",
+      "files": ["controls/Example_Preview_Frame.js", "controls/Docs_Viewer_Shell.js"]
+    },
+    {
+      "id": "phase-4-catalog-home",
+      "title": "Control catalog + home",
+      "status": "implemented",
+      "files": ["controls/Control_Catalog.js"]
+    },
+    {
+      "id": "phase-5-polish-promotion",
+      "title": "Polish, tests, and optional control promotion",
+      "status": "implemented",
+      "files": ["tests/docs-viewer.test.js", "tests/docs-viewer.browser.test.js"]
+    },
+    {
+      "id": "phase-6-documentation-studio",
+      "title": "Full-screen Documentation Studio redesign",
+      "status": "implemented",
+      "files": ["controls/Docs_Viewer_Shell.js", "server.js"]
+    },
+    {
+      "id": "phase-7-discovery-coverage",
+      "title": "Global discovery, preview coverage, focused guides, and compact mobile navigation",
+      "status": "implemented",
+      "files": ["controls/Global_Search.js", "controls/Control_Catalog.js", "control_preview_registry.js", "server.js", "tests/docs-viewer.test.js", "tests/docs-viewer.browser.test.js"]
+    },
+    {
+      "id": "phase-8-opening-control-atlas",
+      "title": "Opening full-registry control data grid and activated preview workspace",
+      "status": "implemented",
+      "files": ["controls/Control_Explorer.js", "controls/Docs_Viewer_Shell.js", "client.js", "tests/docs-viewer.test.js", "tests/docs-viewer.browser.test.js"]
+    },
+    {
+      "id": "phase-9-public-search-context",
+      "title": "Unified public example titles, match-aware search, and motion accessibility",
+      "status": "implemented",
+      "files": ["example_public_title.js", "server.js", "controls/Docs_Viewer_Shell.js", "controls/Global_Search.js", "controls/Control_Explorer.js", "tests/docs-viewer.test.js", "tests/docs-viewer.browser.test.js"]
+    }
+  ],
+  "required_tests": [
+    {
+      "path": "tests/docs-viewer.test.js",
+      "assertions": [
+        "Home and example/control pages render server-side with a source-code-viewer region.",
+        "The client activation marker is set after the bundle runs (activation, not hydration).",
+        "A missing source path renders a visible failure panel instead of crashing.",
+        "Source API returns text for kind=docs, kind=framework, kind=component, and kind=example."
+      ]
+    }
+  ],
+  "owner_readiness": {
+    "last_checked": "2026-07-25",
+    "status": "phase_9_deployed_and_verified",
+    "status_command": "git status --short --branch",
+    "safe_without_owner_acceptance": true,
+    "seeded_paths": [
+      "package.json",
+      "AGENTS.md",
+      "IMPLEMENTATION_PLAN.md",
+      "controls/Source_Code_Viewer.js",
+      "controls/Source_Browser.js",
+      "controls/Docs_Viewer_Shell.js",
+      "controls/Example_Preview_Frame.js",
+      "controls/Control_Catalog.js",
+      "controls/Global_Search.js",
+      "controls/Control_Explorer.js",
+      "control_preview_registry.js",
+      "example_public_title.js",
+      "client.js",
+      "server.js",
+      "tests/docs-viewer.test.js",
+      "tests/docs-viewer.browser.test.js"
+    ],
+    "gate": "Preserve pre-existing and unrelated edits. Phase 9 unifies public example naming, adds bounded metadata-only search match context, respects reduced-motion preferences, and makes atlas keyboard focus visible. It must pass the owner HTTP/browser suite, ecosystem contract checks, a private Oracle candidate gate, and the complete public route/browser/security gate before PM2 state is saved."
+  },
+  "owner_validation_commands": [
+    "node --check controls/Source_Code_Viewer.js",
+    "npm install",
+    "npm start",
+    "npm test"
+  ],
+  "ecosystem_validation_commands": [
+    "npm run docs:viewer:check"
+  ]
+}

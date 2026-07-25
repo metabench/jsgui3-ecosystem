@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "generated": false,
+  "status": "owner-implementation-contract-blocked",
+  "decision": "contract-only-until-owner-worktrees-clear",
+  "decision_reason": "Webpage and Website remain test-backed manifest references, not live docs-viewer entries, until a small served jsgui3-server example exists. jsgui3-server was clean on the later 2026-06-04 docs-viewer shell recheck, but the Webpage and Website model owner repos still have dirty worktrees, so this coordinator contract records the owner files, routes, required features, tests, and readiness gates without promoting live entries.",
+  "coordination_owner": "jsgui3-ecosystem",
+  "implementation_owner": "jsgui3-server",
+  "implementation_owner_path": "../jsgui3-server",
+  "route_prefix": "/examples/webpage-website",
+  "deferred_manifest_ids": [
+    "webpage.composition-tests",
+    "website.resolved-model-tests"
+  ],
+  "owner_readiness": {
+    "last_checked": "2026-06-04",
+    "status": "server_owner_clean_model_owners_blocked",
+    "safe_without_owner_acceptance": true,
+    "status_command": "git status --short --branch",
+    "latest_recheck_summary": "jsgui3-server was clean at master...origin/master before the additive docs-viewer shell was added on 2026-06-04. The served Webpage/Website example remains deferred because jsgui3-webpage and jsgui3-website still have active model/test worktrees.",
+    "dirty_core_paths": [],
+    "untracked_related_paths": [],
+    "gate": "Do not promote Webpage/Website into live docs-viewer inventory until jsgui3-webpage and jsgui3-website model owner worktrees are reconciled or explicit acceptance is given for a served example that depends on their current state."
+  },
+  "model_owner_readiness": [
+    {
+      "repo": "jsgui3-webpage",
+      "repo_path": "../jsgui3-webpage",
+      "status": "blocked_dirty_worktree",
+      "last_checked": "2026-06-04",
+      "dirty_paths": [
+        ".gitattributes",
+        ".gitignore",
+        "README.md",
+        "Webpage.js"
+      ],
+      "untracked_paths": [
+        "test/webpage_composition.test.js"
+      ]
+    },
+    {
+      "repo": "jsgui3-website",
+      "repo_path": "../jsgui3-website",
+      "status": "blocked_dirty_worktree",
+      "last_checked": "2026-06-04",
+      "dirty_paths": [
+        ".gitattributes",
+        ".gitignore",
+        "API.js",
+        "README.md",
+        "Website.js",
+        "index.js",
+        "test/website.test.js"
+      ],
+      "untracked_paths": [
+        "model/",
+        "test/resolved_model.test.js"
+      ]
+    }
+  ],
+  "implementation_files": [
+    {
+      "path": "examples/webpage-website/server.js",
+      "purpose": "Starts a tiny served Website/Webpage example through jsgui3-server."
+    },
+    {
+      "path": "examples/webpage-website/controls/Webpage_Website_Demo.js",
+      "purpose": "Small activated control used on one served Webpage."
+    },
+    {
+      "path": "examples/webpage-website/client.js",
+      "purpose": "Browser activation entry for the served demo control."
+    },
+    {
+      "path": "tests/webpage-website-example.test.js",
+      "purpose": "Bounded route and rendering contract tests for the served example."
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/examples/webpage-website",
+      "response": "HTML home page from a Website with the first Webpage instance."
+    },
+    {
+      "method": "GET",
+      "path": "/examples/webpage-website/about",
+      "response": "HTML about page from the second Webpage instance."
+    },
+    {
+      "method": "GET",
+      "path": "/examples/webpage-website/start",
+      "response": "Alias route to /examples/webpage-website."
+    },
+    {
+      "method": "GET",
+      "path": "/examples/webpage-website/old-about",
+      "response": "Redirect route to /examples/webpage-website/about."
+    },
+    {
+      "method": "GET",
+      "path": "/examples/webpage-website/api/status",
+      "response": "Small JSON status endpoint."
+    }
+  ],
+  "required_features": [
+    "website_with_two_webpages",
+    "alias_route",
+    "redirect_route",
+    "json_status_endpoint",
+    "activated_control",
+    "docs_viewer_inventory_ready"
+  ],
+  "docs_viewer_promotion_gate": {
+    "status": "deferred",
+    "rule": "Do not move webpage.composition-tests or website.resolved-model-tests from docs_viewer_inventory.deferred_manifest_ids into live entries until the served owner example exists, passes owner tests, and has docs/framework/component/example source refs."
+  },
+  "required_tests": [
+    {
+      "path": "tests/webpage-website-example.test.js",
+      "assertions": [
+        "GET /examples/webpage-website returns HTML that names the Website and first Webpage.",
+        "GET /examples/webpage-website/about returns HTML that names the second Webpage.",
+        "GET /examples/webpage-website/start serves or redirects to the home page as an alias.",
+        "GET /examples/webpage-website/old-about redirects to /examples/webpage-website/about.",
+        "GET /examples/webpage-website/api/status returns JSON with ok=true.",
+        "The served HTML includes one activated control marker and client bundle reference.",
+        "The example does not mutate jsgui3-webpage or jsgui3-website model behavior."
+      ]
+    }
+  ],
+  "owner_validation_commands": [
+    "node --check examples/webpage-website/server.js",
+    "node --check examples/webpage-website/client.js",
+    "node tests/test-runner.js --test=webpage-website-example.test.js"
+  ],
+  "ecosystem_validation_commands": [
+    "npm run docs:viewer:check",
+    "npm test",
+    "npm run docs:check",
+    "npm run smoke:examples"
+  ]
+}

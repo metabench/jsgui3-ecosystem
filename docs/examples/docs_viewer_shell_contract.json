@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "generated": false,
+  "status": "owner-implementation-parked",
+  "decision": "owner-shell-parked-before-v0.0.156-release",
+  "decision_reason": "The first runnable shell was implemented and tested locally in jsgui3-server, then intentionally parked in two git stashes before the v0.0.156 release. It is recoverable but is not present in the current working tree, local branch history, or remote history.",
+  "coordination_owner": "jsgui3-ecosystem",
+  "implementation_owner": "jsgui3-server",
+  "implementation_owner_path": "../jsgui3-server",
+  "control_owner": "jsgui3-html",
+  "owner_readiness": {
+    "last_checked": "2026-07-11",
+    "status": "implemented_in_local_stash",
+    "safe_without_owner_acceptance": true,
+    "status_command": "git status --short --branch",
+    "latest_recheck_summary": "Current master is clean and does not contain the docs-viewer paths. stash@{0} contains all five implementation/test files; stash@{1} contains the tests/test-runner.js registration. Both stored patches pass git apply --check against current master.",
+    "dirty_core_paths": [],
+    "untracked_related_paths": [],
+    "working_tree_present": false,
+    "committed": false,
+    "remote_present": false,
+    "recovery_refs": ["stash@{0}", "stash@{1}"],
+    "gate": "The shell is recoverable, but not currently runnable from the checkout. Recover it on a dedicated owner branch by applying (not popping) both stashes, verify, and commit before marking it implemented in branch/remote history."
+  },
+  "inventory_source": "docs/examples/docs_viewer_inventory.json",
+  "owner_inventory_source": "../jsgui3-ecosystem/docs/examples/docs_viewer_inventory.json",
+  "route_prefix": "/docs/examples",
+  "api_prefix": "/api/docs-viewer",
+  "first_runnable_path": {
+    "owner_repo": "jsgui3-server",
+    "owner_path": "examples/docs-viewer/server.js",
+    "start_command": "node examples/docs-viewer/server.js",
+    "url_path": "/docs/examples",
+    "first_manifest_id": "server.jsgui3-html-mvvm-counter",
+    "status": "parked",
+    "blocked_by": "Implementation is stored only in local stash@{0}/stash@{1}; owner files are absent from the current checkout and all branch/remote history."
+  },
+  "implementation_files": [
+    {
+      "path": "examples/docs-viewer/server.js",
+      "purpose": "Starts the first bounded docs-viewer shell from jsgui3-server without changing existing examples.",
+      "status": "parked"
+    },
+    {
+      "path": "examples/docs-viewer/docs-viewer-shell.js",
+      "purpose": "Loads inventory data, registers explicit page routes, and registers source/inventory API handlers.",
+      "status": "parked"
+    },
+    {
+      "path": "examples/docs-viewer/controls/Docs_Viewer_App.js",
+      "purpose": "Renders the index and entry pages with live preview, source, command, owner, status, test, and failure slots.",
+      "status": "parked"
+    },
+    {
+      "path": "examples/docs-viewer/client.js",
+      "purpose": "Client bundle entry for future activation of the shell controls; first pass may be server-rendered only.",
+      "status": "parked"
+    },
+    {
+      "path": "tests/docs-viewer-shell.test.js",
+      "purpose": "Owner-side route and rendering contract tests for the shell.",
+      "status": "parked"
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/docs/examples",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "response": "HTML index page listing docs-viewer inventory entries."
+    },
+    {
+      "method": "GET",
+      "path": "/docs/examples/",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "response": "HTML index page listing docs-viewer inventory entries."
+    },
+    {
+      "method": "GET",
+      "path": "/docs/examples/:manifest_id",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "response": "HTML entry page for one manifest-backed example."
+    },
+    {
+      "method": "GET",
+      "path": "/api/docs-viewer/inventory",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "response": "JSON copy of the checked docs-viewer inventory with no generated smoke output."
+    },
+    {
+      "method": "GET",
+      "path": "/api/docs-viewer/source",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "query": [
+        "manifest_id",
+        "kind",
+        "index"
+      ],
+      "response": "Plain-text docs, framework, component, or example source for one inventory source slot. kind must be docs, framework, component, or example."
+    },
+    {
+      "method": "GET",
+      "path": "/api/docs-viewer/status",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "response": "JSON status summary with inventory status, entry count, deferred count, smoke status counts, registered routes, source kinds, and missing declared source or test refs."
+    }
+  ],
+  "source_kinds": [
+    "docs",
+    "framework",
+    "component",
+    "example"
+  ],
+  "render_slots": [
+    "docs",
+    "live_preview",
+    "activation_status",
+    "framework_source",
+    "component_source",
+    "example_source",
+    "run_command",
+    "owner_repo",
+    "smoke_status",
+    "related_tests",
+    "failure_panel"
+  ],
+  "runtime_data_loading": [
+    {
+      "source": "docs_viewer_inventory",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "rule": "Load JSON from JSGUI3_DOCS_VIEWER_INVENTORY when set; otherwise load ../jsgui3-ecosystem/docs/examples/docs_viewer_inventory.json relative to the jsgui3-server repo root."
+    },
+    {
+      "source": "example_source",
+      "owner_file": "examples/docs-viewer/docs-viewer-shell.js",
+      "rule": "Resolve source refs from each inventory ref repo_path and path; render a failure slot instead of hiding missing files."
+    }
+  ],
+  "required_tests": [
+    {
+      "path": "tests/docs-viewer-shell.test.js",
+      "assertions": [
+        "GET /api/docs-viewer/inventory returns schema_version, entries, owner_repo, viewer_path, expected_result, live_preview, docs, source, related_tests, and last_smoke fields.",
+        "GET /docs/examples returns an HTML shell with docs, live preview, framework source, component source, example source, run command, owner repo, smoke status, related tests, and failure panel labels.",
+        "GET /docs/examples/:manifest_id renders the selected entry and does not start, mutate, or fork the owning example.",
+        "GET /api/docs-viewer/source?manifest_id=<id>&kind=docs&index=0 returns source text for an existing docs slot.",
+        "GET /api/docs-viewer/source?manifest_id=<id>&kind=framework&index=0 returns source text for an existing framework slot.",
+        "GET /api/docs-viewer/source?manifest_id=<id>&kind=component&index=0 returns source text for an existing component slot.",
+        "GET /api/docs-viewer/source?manifest_id=<id>&kind=example&index=0 returns source text for an existing example slot.",
+        "GET /api/docs-viewer/status returns entry counts, smoke status counts, routes, source kinds, and missing declared refs without launching examples.",
+        "Missing source files and unknown manifest ids return explicit 404 or failure-slot output."
+      ]
+    }
+  ],
+  "owner_validation_commands": [
+    "node --check examples/docs-viewer/server.js",
+    "node --check examples/docs-viewer/docs-viewer-shell.js",
+    "node --check examples/docs-viewer/controls/Docs_Viewer_App.js",
+    "node --check examples/docs-viewer/client.js",
+    "node tests/test-runner.js --test=docs-viewer-shell.test.js"
+  ],
+  "ecosystem_validation_commands": [
+    "npm run docs:viewer:check",
+    "npm test",
+    "npm run docs:check",
+    "npm run smoke:examples"
+  ],
+  "deferred_manifest_ids": [
+    "webpage.composition-tests",
+    "website.resolved-model-tests"
+  ],
+  "non_goals": [
+    "Do not launch sibling example servers from the shell in the first pass.",
+    "Do not make jsgui3-modern-examples startup part of default CI.",
+    "Do not add Webpage or Website live viewer pages until a served example exists.",
+    "Do not edit jsgui3-simple-example until its dirty worktree and stale smoke script are reconciled."
+  ]
+}
