@@ -72,6 +72,28 @@ with no test is `unpinned` and should be expected to rot.
 | MVVM engine review | `jsgui3-html/docs/mvvm_engine_review.md` | Review value is the first ~50 lines; the rest is roadmap. Every line citation has drifted, but 4 of 4 core claims survived verification. |
 | Visual state audit | `jsgui3-html/docs/control-design-book/visual-advancement/01-current-state-audit.md` | §1.1 still exact. §§1.4–1.5 refuted: "~5 of ~100 controls use `themeable()`" is now 26 of 155, and its recommendation to unify on one token prefix went the other way — three now coexist. |
 
+## Corrections to claims in circulation
+
+Findings that were repeated across several documents and turned out to be wrong or
+overstated. Verified by execution on the date shown.
+
+| Claim | Reality | Verified |
+|---|---|---|
+| "jsgui3 multi-page/multi-route support is broken — `server.js:346-348` throws NYI." | Overstated. The documented form, `Server({ pages: { '/': …, '/about': … } })`, **constructs fine**. The NYI throw is on `spec.routes`, a different key that no doc prescribes. Originates in `copilot-dl-news/docs/agi/JSGUI3_MIGRATION_REPORT.md`. | 2026-08-01, jsgui3-server 0.0.157 |
+| "jsgui3-html uses native Node.js bindings (V8/C++)." | False. Zero `.node` files, zero `binding.gyp` in its closure; `require()` loads 348 modules, none native. Corrected in `news-crawler-db/TROUBLESHOOTING.md`. | 2026-08-01, jsgui3-html 0.0.189 |
+| "155 controls, 48 mixins, no index." | `jsgui3-html/docs/controls/INDEX.md` has existed since 2025-12-21 with 65 per-control docs. All 64 were probed by execution; 63 were already correct. | 2026-08-01 |
+| `require('lang-tools')` for `Data_Object` in agent guidance. | Resolves inside jsgui3-html only. Throws `MODULE_NOT_FOUND` from jsgui3-client, which does not declare it. jsgui3-html re-exports `Data_Object`, `Data_Value` and `Collection`. Corrected in `jsgui3-html/AGENTS.md`. | 2026-08-01 |
+
+### Open hazard, recorded not fixed
+
+Twenty test files and two tooling files in jsgui3-html assign `global.navigator = {...}` in
+sloppy mode. Node 22+ makes `globalThis.navigator` a getter with no setter, so the assignment
+**silently no-ops** rather than throwing — verified: after `global.navigator = { userAgent:
+'MOCK' }`, `navigator.userAgent` is still `Node.js/25`. Those files believe they are mocking the
+user agent and are not. The suite passes regardless, so making the mock actually work could
+change test outcomes; it belongs in its own change. The strict-mode instance of the same line
+did throw, and was fixed in `lab/experiments/001-data-grid-reattach/check.js`.
+
 ## What has never been reviewed
 
 Kept deliberately, because the gaps matter as much as the coverage:
