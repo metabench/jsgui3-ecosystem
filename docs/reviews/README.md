@@ -84,6 +84,38 @@ overstated. Verified by execution on the date shown.
 | "155 controls, 48 mixins, no index." | `jsgui3-html/docs/controls/INDEX.md` has existed since 2025-12-21 with 65 per-control docs. All 64 were probed by execution; 63 were already correct. | 2026-08-01 |
 | `require('lang-tools')` for `Data_Object` in agent guidance. | Resolves inside jsgui3-html only. Throws `MODULE_NOT_FOUND` from jsgui3-client, which does not declare it. jsgui3-html re-exports `Data_Object`, `Data_Value` and `Collection`. Corrected in `jsgui3-html/AGENTS.md`. | 2026-08-01 |
 
+## Confirmed defects, pinned as tests
+
+Established by execution between 2026-07-30 and 2026-08-01 and pinned in
+`jsgui3-html/test/core/known_defects.test.js` (`653964c`). Each has a PIN test asserting current
+behaviour and a skipped test asserting the fix, ready to un-skip.
+
+| Defect | Evidence | Fixed? |
+|---|---|---|
+| **`spec.text` renders nothing.** `new Control({ tag_name: 'button', text: 'x' })` produces `<button></button>` with no warning. `spec.content` and `.add(string)` both work. | The main README's flagship construction example used it. Corrected in `4480471`. | Doc fixed; behaviour pinned |
+| **`_persisted_fields` hydration has no reserved-key guard.** `control-enh.js:636-640` assigns every `data-jsgui-fields` key straight onto the control. `exempt_prop_names` at `:151` is an empty object literal. The sibling `_ctrl_fields` path at `:893-898` guards 22 reserved names and warns on collision. | `{'selection_scope':3}` leaves `ctrl.selection_scope === 3`. Worse, `{'content':99}` **replaces the content collection with the number 99**, destroying the control tree silently. | No — fix staged as skipped test |
+| **`view_environment` is read but never assigned.** 12 controls read `this.context.view_environment.layout_mode`; a grep for any assignment across all three packages returns nothing. | Layout mode cannot resolve under SSR. | No — fix staged |
+| **`Control.add()` returns the added child, not `this`.** And `add(array)` returns `undefined`, because `let res = []` at `control-core.js:797` shadows the outer `res`. | Children are still added correctly; only the return value is lost. Chaining silently does the wrong thing. | No — fix staged |
+| **Minify levels collapse.** `apply_minify_options()` sets `minify: true` then assigns granular `false` flags that esbuild discards, so conservative and normal produce identical output. | Measured with the suite's own fixture: conservative 531 B, normal 531 B, aggressive 490 B. The guarding assertion was `new Set([a,b,c]).size >= 2`, which passes whenever any one differs. Repaired in `f29cf32`. | Test repaired; bundler defect pinned |
+
+**The reattachment contract** is demonstrated runnably at
+`jsgui3-html/lab/experiments/002-spec-survival/` (`4480471`): the client rebuilds every control
+from exactly `{ context, __type_name, id, el }`, so any constructor branch on another spec field
+silently does not happen. 129 unguarded `if (spec.X)` branches across 57 files are exposed to
+this; four controls (`Data_Table`, `Date_Picker`, `Text_Input`, `Textarea`) are immune because
+they rebuild spec from `spec.el`.
+
+## Docs verified by execution
+
+Rather than read for plausibility, these were checked by running them:
+
+| What | Result |
+|---|---|
+| All 64 files in `jsgui3-html/docs/controls/` | **63 already correct.** Constructor resolves, constructs, renders, methods exist, test files exist. One defect: `datetime_picker.md` named `DateTime_Picker`; the export is `Datetime_Picker`. Pinned by `test/core/control_docs_contract.test.js` (`03fdf21`). |
+| Nine `docs/agi/skills/*/SKILL.md` | Two dead command references fixed; the lab checker crashed on Node 25 and was repaired. Pinned by `test/core/docs_command_contract.test.js` (`acd3032`). |
+| `jsgui3-server` README + CLI | Recipe verified end to end — server started on a free port, `GET /` returned 200 with SSR content and `data-jsgui-id` present. `--root` documented as working but never read by `server.js`; corrected in `dbd382b`. |
+| `jsgui3-client` README | **Correct.** `jsgui.http` appears undefined in plain Node because the helpers wire only under browser globals. A plain-Node check nearly caused accurate docs to be "fixed"; clarifying note added in `36e6d02`. |
+
 ### Open hazard, recorded not fixed
 
 Twenty test files and two tooling files in jsgui3-html assign `global.navigator = {...}` in
